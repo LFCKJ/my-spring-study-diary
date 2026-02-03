@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.study.my_spring_study_diary.MySpringStudyDiaryApplicatio
+ n
+
