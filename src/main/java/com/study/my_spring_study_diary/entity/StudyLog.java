@@ -2,6 +2,7 @@ package com.study.my_spring_study_diary.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
 
 public class StudyLog {
     private Long id;
@@ -11,15 +12,16 @@ public class StudyLog {
     private Understanding  understanding;
     private Integer studyTime;
     private LocalDate studyDate;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     //기본 생성자
     public StudyLog(){
     }
 
-    //전체 필드 생성자
-    public StudyLog(Long id, String title, String content, Category category, Understanding understanding) {
+
+//전체 필드
+    public StudyLog(Long id, String title, String content, Category category, Understanding understanding, Integer studyTime, LocalDate studyDate, LocalDateTime createAt) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -27,9 +29,14 @@ public class StudyLog {
         this.understanding = understanding;
         this.studyTime = studyTime;
         this.studyDate = studyDate;
-        this.createAt = LocalDateTime.now();
-        this.updateAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+
     }
+
+    public StudyLog(Long id, String title, String content, Category category, Understanding understanding, Integer studyTime, Temporal temporal) {
+    }
+
 
     //Getter 메서드들
     public Long getId(){return id;}
@@ -39,8 +46,8 @@ public class StudyLog {
     public Understanding getUnderstanding(){return understanding;}
     public Integer getStudyTime(){return studyTime;}
     public LocalDate getStudyDate(){return studyDate;}
-    public LocalDateTime getCreateAt(){return createAt;}
-    public LocalDateTime getUpdateAt(){return updateAt;}
+    public LocalDateTime getCreatedAt(){return createdAt;}
+    public LocalDateTime getUpdatedAt(){return updatedAt;}
 
     //Setter 메서드들
     public void setId(Long id){this.id = id;}
@@ -50,6 +57,6 @@ public class StudyLog {
     public void setUnderstanding(Understanding understanding){this.understanding = understanding;}
     public void setStudyTime(Integer studyTime){this.studyTime = studyTime;}
     public void setStudyDate(LocalDate studyDate){this.studyDate = studyDate;}
-    public void setCreateAt(LocalDateTime createAt){this.createAt = createAt;}
-    public void setUpdateAt(LocalDateTime updateAt){this.updateAt = updateAt;}
+    public void setCreateAt(LocalDateTime createAt){this.createdAt = createAt;}
+    public void setUpdateAt(LocalDateTime updateAt){this.updatedAt = updateAt;}
 }

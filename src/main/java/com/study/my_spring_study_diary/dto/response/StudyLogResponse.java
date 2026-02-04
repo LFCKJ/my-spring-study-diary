@@ -34,8 +34,8 @@ public class StudyLogResponse {
         response.understandingEmoji = studyLog.getUnderstanding().getEmoji();
         response.studyTime = studyLog.getStudyTime();
         response.studyDate = studyLog.getStudyDate();
-        response.createAt = studyLog.getCreateAt();
-        response.updateAt = studyLog.getUpdateAt();
+        response.createAt = studyLog.getCreatedAt();
+        response.updateAt = studyLog.getUpdatedAt();
         return response;
     }
 

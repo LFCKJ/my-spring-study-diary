@@ -4,7 +4,7 @@ import org.apache.catalina.startup.Tomcat;
 
 public enum Category {
     JAVA("☕","Java 기초/심화"),
-    SPRING("🌱""Spring Framework/Boot"),
+    SPRING("🌱","Spring Framework/Boot"),
     JPA("🧳","JPA/Hibernate"),
     DATABASE("💾","SQL/데이터베이스"),
     ALGORITHM("🕹️","알고리즘/자료구조"),
