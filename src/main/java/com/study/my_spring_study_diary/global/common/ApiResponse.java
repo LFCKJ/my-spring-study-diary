@@ -1,7 +1,5 @@
 package com.study.my_spring_study_diary.global.common;
 
-import org.antlr.v4.runtime.atn.ErrorInfo;
-
 public class ApiResponse<T> {
     private boolean success;
     private T data;

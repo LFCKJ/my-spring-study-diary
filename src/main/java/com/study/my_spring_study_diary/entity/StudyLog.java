@@ -2,7 +2,6 @@ package com.study.my_spring_study_diary.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.Temporal;
 
 public class StudyLog {
     private Long id;
@@ -20,8 +19,8 @@ public class StudyLog {
     }
 
 
-//전체 필드
-    public StudyLog(Long id, String title, String content, Category category, Understanding understanding, Integer studyTime, LocalDate studyDate, LocalDateTime createAt) {
+    //전체 필드
+    public StudyLog(Long id, String title, String content, Category category, Understanding understanding, Integer studyTime, LocalDate studyDate) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -31,10 +30,6 @@ public class StudyLog {
         this.studyDate = studyDate;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-
-    }
-
-    public StudyLog(Long id, String title, String content, Category category, Understanding understanding, Integer studyTime, Temporal temporal) {
     }
 
 
@@ -57,6 +52,6 @@ public class StudyLog {
     public void setUnderstanding(Understanding understanding){this.understanding = understanding;}
     public void setStudyTime(Integer studyTime){this.studyTime = studyTime;}
     public void setStudyDate(LocalDate studyDate){this.studyDate = studyDate;}
-    public void setCreateAt(LocalDateTime createAt){this.createdAt = createAt;}
-    public void setUpdateAt(LocalDateTime updateAt){this.updatedAt = updateAt;}
+    public void setCreatedAt(LocalDateTime createdAt){this.createdAt = createdAt;}
+    public void setUpdatedAt(LocalDateTime updatedAt){this.updatedAt = updatedAt;}
 }

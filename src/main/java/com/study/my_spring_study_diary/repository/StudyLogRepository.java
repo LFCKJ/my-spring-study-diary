@@ -18,12 +18,13 @@ import java.util.stream.Collectors;
 public class StudyLogRepository {
     /*학습 일지 저장소
     *
-    * @Respository
+    * @Repository
     *
     *
     *
     *
      */
+
     //데이터 저장소(실제 DB 대신 Map사용)
     private final Map<Long, StudyLog> database = new HashMap<>();
     //ID자동 증가를 위한 시퀀스

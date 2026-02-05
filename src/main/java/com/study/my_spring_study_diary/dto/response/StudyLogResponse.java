@@ -16,8 +16,8 @@ public class StudyLogResponse {
     private String understandingEmoji;
     private Integer studyTime;
     private LocalDate studyDate;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 
     //기본 생성자
     public StudyLogResponse() {}
@@ -34,8 +34,8 @@ public class StudyLogResponse {
         response.understandingEmoji = studyLog.getUnderstanding().getEmoji();
         response.studyTime = studyLog.getStudyTime();
         response.studyDate = studyLog.getStudyDate();
-        response.createAt = studyLog.getCreatedAt();
-        response.updateAt = studyLog.getUpdatedAt();
+        response.createdAt = LocalDate.from(studyLog.getCreatedAt());
+        response.updatedAt = LocalDate.from(studyLog.getUpdatedAt());
         return response;
     }
 
@@ -49,8 +49,8 @@ public class StudyLogResponse {
     public String getUnderstandingEmoji() {return understandingEmoji;}
     public Integer getStudyTime() {return studyTime;}
     public LocalDate getStudyDate() {return studyDate;}
-    public LocalDateTime getCreateAt() {return createAt;}
-    public LocalDateTime getupdateAt() {return updateAt;}
+    public LocalDate getCreatedAt() {return createdAt;}
+    public LocalDate getUpdatedAt() {return updatedAt;}
 
 }
 

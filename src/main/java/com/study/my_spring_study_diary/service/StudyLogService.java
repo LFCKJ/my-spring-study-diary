@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 
 @Service
 public class StudyLogService {
@@ -71,13 +69,13 @@ public class StudyLogService {
                 .collect(Collectors.toList());
     }
     //카테고리별 학습 일지 조회
-    public List<StudyLogResponse>getStudyLogsByCategory(String categoryname){
+    public List<StudyLogResponse>getStudyLogsByCategory(String categoryName){
         //문자열 ->  Enum변환(유효성 검증 포함)
         Category category;
         try{
-            category = Category.valueOf(categoryname.toUpperCase());
+            category = Category.valueOf(categoryName.toUpperCase());
             }catch(IllegalArgumentException e){
-            throw new IllegalArgumentException("유효하지 않은 카테고리입니다: "+categoryname);
+            throw new IllegalArgumentException("유효하지 않은 카테고리입니다: "+categoryName);
         }
         List<StudyLog>studyLogs = studyLogRepository.findByCategory(category);
         return studyLogs.stream()

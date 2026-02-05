@@ -1,7 +1,5 @@
 package com.study.my_spring_study_diary.entity;
 
-import org.apache.catalina.startup.Tomcat;
-
 public enum Category {
     JAVA("☕","Java 기초/심화"),
     SPRING("🌱","Spring Framework/Boot"),
