@@ -31,7 +31,33 @@ public class StudyLog {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
-
+/*학습 일지 정보 수정
+null이 아닌 값만 업데이트
+이 방식을 Dirty Checking또는 Partial Update라고 한다.
+ */
+    public void update(String title, String content, Category category, Understanding understanding, Integer studyTime, LocalDate studyDate) {
+        //null이 아닌 경우에만 업데이트
+        if(title != null){
+            this.title = title;
+        }
+        if(content != null){
+            this.content = content;
+        }
+        if(category != null){
+            this.category = category;
+        }
+        if(understanding != null){
+            this.understanding = understanding;
+        }
+        if(studyTime != null){
+            this.studyTime = studyTime;
+        }
+        if(studyDate != null){
+            this.studyDate = studyDate;
+        }
+        //수정 시간 갱신
+        this.updatedAt = LocalDateTime.now();
+    }
 
     //Getter 메서드들
     public Long getId(){return id;}

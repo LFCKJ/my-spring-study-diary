@@ -1,10 +1,11 @@
 package com.study.my_spring_study_diary.controller;
 
-
 import com.study.my_spring_study_diary.dto.request.StudyLogCreateRequest;
+import com.study.my_spring_study_diary.dto.request.StudyLogUpdateRequest; // 추가됨
 import com.study.my_spring_study_diary.dto.response.StudyLogResponse;
 import com.study.my_spring_study_diary.global.common.ApiResponse;
 import com.study.my_spring_study_diary.service.StudyLogService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,41 +16,67 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/logs")
 public class StudyLogController {
-//의존성 주입: service를 주입받음
+
     private final StudyLogService studyLogService;
-    public StudyLogController(StudyLogService studyLogService){
+
+    public StudyLogController(StudyLogService studyLogService) {
         this.studyLogService = studyLogService;
     }
 
+    // ============================== CREATE ==============================
     @PostMapping
-    public StudyLogResponse createStudyLog(@RequestBody StudyLogCreateRequest request){
-        //service 호출하여 학습 일지 생성
-        return studyLogService.createStudyLog(request);
+    public ResponseEntity<ApiResponse<StudyLogResponse>> createStudyLog(
+            @RequestBody StudyLogCreateRequest request) {
+        StudyLogResponse response = studyLogService.createStudyLog(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.success(response));
     }
 
-      //모든 학습 일지 조회(read - ALL)
+    // ============================== READ ==============================
+
+    // 모든 학습 일지 조회
     @GetMapping
-    public List<StudyLogResponse> getAllStudyLogs(){
-        //service호출하여 모든 학습 일지 조회
-        return studyLogService.getAllStudyLogs();
+    public ResponseEntity<ApiResponse<List<StudyLogResponse>>> getAllStudyLogs() {
+        List<StudyLogResponse> responses = studyLogService.getAllStudyLogs();
+        return ResponseEntity.ok(ApiResponse.success(responses));
     }
 
-    //특정 학습 일지 조회(read -single)
+    // 특정 ID로 조회
     @GetMapping("/{id}")
-    public StudyLogResponse getStudyLog(@PathVariable Long id){
-        //service 호출하여 Id로 학습 일지 조회
-        return studyLogService.getStudyLogById(id);
+    public ResponseEntity<ApiResponse<StudyLogResponse>> getStudyLog(
+            @PathVariable Long id) {
+        StudyLogResponse response = studyLogService.getStudyLogById(id);
+        return ResponseEntity.ok(ApiResponse.success(response));
     }
-//날짜별 학습 일지 조회(Read - By Date)
+
+    // 날짜별 조회
     @GetMapping("/date/{date}")
-    public List<StudyLogResponse> getStudyLogsByDate(@PathVariable String date){
-        //Service 호출하여 날짜로 학습 일지 조회
-        return studyLogService.getStudyLogsByDate(LocalDate.parse(date));
+    public ResponseEntity<ApiResponse<List<StudyLogResponse>>> getStudyLogsByDate(
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        List<StudyLogResponse> responses = studyLogService.getStudyLogsByDate(date);
+        return ResponseEntity.ok(ApiResponse.success(responses));
     }
-    // 카테고리별 학습 일지 조회(read - By category)
+
+    // 카테고리별 조회
     @GetMapping("/category/{category}")
-    public List<StudyLogResponse> getStudyLogsByCategory(@PathVariable String category){
-        //service 호출
-        return studyLogService.getStudyLogsByCategory(category);
+    public ResponseEntity<ApiResponse<List<StudyLogResponse>>> getStudyLogsByCategory(
+            @PathVariable String category) {
+        List<StudyLogResponse> responses = studyLogService.getStudyLogsByCategory(category);
+        return ResponseEntity.ok(ApiResponse.success(responses));
+    }
+
+    // ============================== UPDATE ==============================
+    /**
+     * 학습 일지 수정
+     * PUT /api/v1/logs/{id}
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<StudyLogResponse>> updateStudyLog(
+            @PathVariable Long id,
+            @RequestBody StudyLogUpdateRequest request) { // 수정 전용 DTO 사용 권장
+
+        StudyLogResponse response = studyLogService.updateStudyLog(id, request);
+
+        return ResponseEntity.ok(ApiResponse.success(response));
     }
 }
