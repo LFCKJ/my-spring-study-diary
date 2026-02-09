@@ -14,16 +14,18 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-@Repository
+@Repository // Spring Bean 으로 등록
 public class StudyLogRepository {
     /*학습 일지 저장소
     *
-    * @Repository
+    * @Repository 어노테이션 설명
+    * -이 클래스를 Spring Bean으로 등록
+    * - 데이터 접근 계층임을 명시한다.
+    * - 데이터 접근 관련 예외를 Spring의 DataAccessException으로 변환해줍니다.
     *
-    *
-    *
-    *
-     */
+    * 실제 프로젝트에서는JPA, MyBatis등을 사용하지만,
+    * 이번엔 MAP을 사용해 데이터를 저장한다,
+    */
 
     //데이터 저장소(실제 DB 대신 Map사용)
     private final Map<Long, StudyLog> database = new HashMap<>();
@@ -40,6 +42,8 @@ public class StudyLogRepository {
     }
     public StudyLog save(StudyLog studyLog){
         //학습일지 저장(Create)
+        //@param studyLog 저장할 학습 일지
+        //@return 저장된 학습 일지(ID포함)
         if(studyLog.getId() == null){
             studyLog.setId(sequence.getAndIncrement());
         }
@@ -99,4 +103,17 @@ MAP은 같은 키로 put하면 덮어쓰므로 save와 동일하게 동작
     public long count(){
         return database.size();
     }
+
+    //====DELETE
+    //ID로 학습 일지를 삭제한다.
+    //@param id삭제할 학습 일지ID
+    //@return 삭제 성공 여부(true: 삭제됨, false:해당 Id없음
+    public boolean deleteById(Long id){
+        //Map.remove()는 삭제된 값을 반환, 없으면 Null반환
+        StudyLog removed = database.remove(id);
+        return removed != null;
+    }
+
+
+
 }

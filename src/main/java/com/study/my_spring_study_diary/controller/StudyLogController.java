@@ -2,6 +2,7 @@ package com.study.my_spring_study_diary.controller;
 
 import com.study.my_spring_study_diary.dto.request.StudyLogCreateRequest;
 import com.study.my_spring_study_diary.dto.request.StudyLogUpdateRequest; // 추가됨
+import com.study.my_spring_study_diary.dto.response.StudyLogDeleteResponse;
 import com.study.my_spring_study_diary.dto.response.StudyLogResponse;
 import com.study.my_spring_study_diary.global.common.ApiResponse;
 import com.study.my_spring_study_diary.service.StudyLogService;
@@ -77,6 +78,21 @@ public class StudyLogController {
 
         StudyLogResponse response = studyLogService.updateStudyLog(id, request);
 
+        return ResponseEntity.ok(ApiResponse.success(response));
+    }
+
+    //=================DELETE
+    /*
+    학습 일지 삭제 API
+    DELETE /api/v1/logs{id}
+    @param id 삭제할 학습 일지ID
+    @return 삭제 결과
+     */
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<StudyLogDeleteResponse>>deleteStudyLog(
+            @PathVariable Long id){
+        StudyLogDeleteResponse response = studyLogService.deleteStudyLog(id);
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 }
