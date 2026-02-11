@@ -27,4 +27,8 @@ public enum Category {
     public String getDescription() {
       return description;
     }
+
+    public String toSring() {
+        return toString();
+    }
 }

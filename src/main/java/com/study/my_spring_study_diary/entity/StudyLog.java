@@ -65,13 +65,13 @@ null이 아닌 값만 업데이트
     public String getContent(){return content;}
     public Category getCategory(){return category;}
     public Understanding getUnderstanding(){return understanding;}
-    public Integer getStudyTime(){return studyTime;}
+    public String getStudyTime(){return studyTime;}
     public LocalDate getStudyDate(){return studyDate;}
     public LocalDateTime getCreatedAt(){return createdAt;}
     public LocalDateTime getUpdatedAt(){return updatedAt;}
 
     //Setter 메서드들
-    public void setId(Long id){this.id = id;}
+    public static void setId(Long id){this.id = id;}
     public void setTitle(String title){this.title = title;}
     public void  setContent(String content){this.content = content;}
     public void setCategory(Category category){this.category = category;}

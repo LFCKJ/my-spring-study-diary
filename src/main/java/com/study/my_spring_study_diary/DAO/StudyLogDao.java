@@ -29,10 +29,10 @@ public interface StudyLogDao {
     List<StudyLog> findAll();
     List<StudyLog> findByCategory(String category);
 
-    //=========Update=======
+    //=========Update================
     StudyLog update(StudyLog studyLog);
 
-    //==========DELETE
+    //==========DELETE================
     boolean deleteById(Long id);
     boolean existsById(Long id);
     long count();
